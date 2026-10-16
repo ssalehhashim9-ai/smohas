@@ -1,0 +1,664 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMOHAS — Shaping Tomorrow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            black: '#000000',
+                            darkCard: '#111113',
+                            darkSurface: '#1c1c1e',
+                            darkBorder: '#2c2c2e',
+                            lightBg: '#f5f5f7',
+                            lightCard: '#ffffff',
+                            lightBorder: '#e5e5ea',
+                            blue: '#0071e3',
+                            blueHover: '#0077ed',
+                            cyan: '#2997ff',
+                            textDark: '#f5f5f7',
+                            mutedDark: '#86868b',
+                            textLight: '#1d1d1f',
+                            mutedLight: '#86868b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Inter', 'Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Cairo', sans-serif;
+            letter-spacing: -0.015em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .apple-nav-light {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .apple-nav-dark {
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .apple-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .apple-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .text-gradient-light {
+            background: linear-gradient(180deg, #1d1d1f 0%, #afafb1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-dark {
+            background: linear-gradient(180deg, #ffffff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <meta name="google-site-verification" content="aY-gcMZkxyrnEy9amKSPd_NJ_yFx10mb0Ijm8Sl0Prs" />
+</head>
+<body class="bg-apple-lightBg dark:bg-apple-black text-apple-textLight dark:text-apple-textDark transition-colors duration-300 antialiased">
+
+    <!-- NAVIGATION HEADER -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 apple-nav-light transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-12 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-5 h-5 flex items-center justify-center transition-transform group-hover:scale-105">
+                    <!-- Hexagonal S Logo SVG -->
+                    <svg viewBox="0 0 100 115" class="w-full h-full fill-current text-black dark:text-white">
+                        <polygon points="50,10 88,32 88,48 65,35 50,26 35,35 20,43 20,58 35,66 50,75 65,66 65,52 80,60 80,74 50,91 20,74 8,81 50,105 92,81 92,48 78,40 78,32" />
+                    </svg>
+                </div>
+                <span class="text-xs font-bold tracking-widest uppercase text-black dark:text-white">SMOHAS</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-apple-mutedLight dark:text-apple-mutedDark">
+                <a href="#hero" data-i18n="nav-overview" class="hover:text-black dark:hover:text-white transition-colors">Overview</a>
+                <a href="#ibottle" data-i18n="nav-ibottle" class="hover:text-black dark:hover:text-white transition-colors">iBottle</a>
+                <a href="#glasses" data-i18n="nav-glasses" class="hover:text-black dark:hover:text-white transition-colors">AI Glasses</a>
+                <a href="#pillars" data-i18n="nav-pillars" class="hover:text-black dark:hover:text-white transition-colors">Pillars</a>
+                <a href="#specs" data-i18n="nav-specs" class="hover:text-black dark:hover:text-white transition-colors">Specs</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button id="lang-toggle" onclick="toggleLanguage()" class="px-2.5 py-1 rounded-full border border-apple-lightBorder dark:border-apple-darkBorder text-xs font-medium hover:bg-black/5 dark:hover:bg-white/10 transition-all">
+                    العربية
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white transition-all text-xs" title="Toggle Theme">
+                    <i class="fa-solid fa-moon inline dark:hidden text-slate-700"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline text-amber-400"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="pt-32 pb-16 md:pt-40 md:pb-20 text-center relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 relative z-10 space-y-6">
+            <span data-i18n="hero-tag" class="text-xs sm:text-sm font-extrabold text-apple-blue uppercase tracking-widest px-4 py-1.5 rounded-full bg-apple-blue/10">SMOHAS Innovations</span>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight">
+                <span id="hero-heading" data-i18n="hero-motto" class="text-gradient-light">Shaping Tomorrow through Originality, Human Advancement & Science</span>
+            </h1>
+
+            <p data-i18n="hero-sub" class="text-lg sm:text-2xl text-apple-mutedLight dark:text-apple-mutedDark max-w-3xl mx-auto font-medium">
+                Empowering everyday life with <strong class="text-black dark:text-white font-bold">iBottle</strong> smart hydration and <strong class="text-black dark:text-white font-bold">SMOHAS AI Glasses</strong> wearable intelligence.
+            </p>
+        </div>
+
+        <!-- HERO IMAGE GALLERY GRID (BOTH IMAGES) -->
+        <div class="mt-14 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="apple-card p-3 rounded-3xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-2xl overflow-hidden group">
+                <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+                    <img src="Smart Water Bottle for Hydration Tracking _ WFH Wellness.jpeg" alt="iBottle Hydration Tracking & App Sync" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="p-4 text-left">
+                    <span class="text-xs font-bold text-apple-blue uppercase tracking-wider">iBottle Pure Hydration</span>
+                    <h3 class="text-lg font-extrabold text-black dark:text-white">Hydration & App Sync</h3>
+                </div>
+            </div>
+
+            <div class="apple-card p-3 rounded-3xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-2xl overflow-hidden group">
+                <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+                    <img src="Smart LED Temperature Bottle – Perfect for Daily Use.jpeg" alt="iBottle Smart LED Temperature Display" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="p-4 text-left">
+                    <span class="text-xs font-bold text-apple-blue uppercase tracking-wider">iBottle Thermal Control</span>
+                    <h3 class="text-lg font-extrabold text-black dark:text-white">Smart LED Temperature Display</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLAGSHIP PRODUCT: iBOTTLE SECTION -->
+    <section id="ibottle" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span data-i18n="ibottle-tag" class="text-xs sm:text-sm font-extrabold text-apple-blue uppercase tracking-widest">Smart Hydration System</span>
+            <h2 data-i18n="ibottle-title" class="text-4xl sm:text-6xl font-extrabold tracking-tight">iBottle</h2>
+            <p data-i18n="ibottle-sub" class="text-apple-mutedLight dark:text-apple-mutedDark text-lg sm:text-xl font-medium">
+                Built-in water filtration, active freezing & heating thermal engine, LED temperature display, and smartphone app intake tracking.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <!-- Product Double Image Showcase -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="apple-card p-2 rounded-2xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-xl overflow-hidden">
+                    <img src="Smart Water Bottle for Hydration Tracking _ WFH Wellness.jpeg" alt="iBottle App Sync" class="w-full h-80 object-cover rounded-xl" />
+                </div>
+                <div class="apple-card p-2 rounded-2xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-xl overflow-hidden">
+                    <img src="Smart LED Temperature Bottle – Perfect for Daily Use.jpeg" alt="iBottle LED Temperature Display" class="w-full h-80 object-cover rounded-xl" />
+                </div>
+            </div>
+
+            <!-- Features Breakdown List -->
+            <div class="space-y-6">
+                <!-- Feature 1 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/15 text-sky-500 flex items-center justify-center text-xl font-black flex-shrink-0">
+                            <i class="fa-solid fa-snowflake"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-thermal-title" class="text-xl font-bold mb-1">Freezes & Heats Water</h3>
+                            <p data-i18n="feat-thermal-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                                Active thermoelectric cooling instantly freezes water or heats it up with precision LED temperature readout on demand.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-xl font-black flex-shrink-0">
+                            <i class="fa-solid fa-filter"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-filter-title" class="text-xl font-bold mb-1">Integrated Water Filter</h3>
+                            <p data-i18n="feat-filter-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                                Built-in micro-porous filtration purifies water automatically as you sip, removing impurities and micro-particles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-apple-blue/15 text-apple-blue flex items-center justify-center text-xl font-black flex-shrink-0">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-app-title" class="text-xl font-bold mb-1">Phone App Hydration Tracking</h3>
+                            <p data-i18n="feat-app-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                                Syncs seamlessly with your smartphone to record daily water intake, display battery level, and set personal hydration goals.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-500 flex items-center justify-center text-xl font-black flex-shrink-0">
+                            <i class="fa-solid fa-satellite"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-sat-title" class="text-xl font-bold mb-1">Satellite & Bluetooth Connectivity</h3>
+                            <p data-i18n="feat-sat-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                                Connects everywhere even off the grid, keeping your hydration statistics logged wherever you travel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPANION PRODUCT: SMOHAS AI GLASSES -->
+    <section id="glasses" class="py-20 bg-white dark:bg-apple-darkCard border-y-2 border-apple-lightBorder dark:border-apple-darkBorder">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span data-i18n="glasses-tag" class="text-xs sm:text-sm font-extrabold text-apple-blue uppercase tracking-widest">Wearable Intelligence</span>
+                    <h2 data-i18n="glasses-title" class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                        SMOHAS AI Glasses
+                    </h2>
+                    <p data-i18n="glasses-sub" class="text-apple-mutedLight dark:text-apple-mutedDark text-lg sm:text-xl font-medium leading-relaxed">
+                        Sleek AI-powered recording glasses designed for hands-free video capture, real-time voice translation, and smart AI assistant interaction.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 pt-2">
+                        <div class="border-l-4 border-apple-blue pl-4 space-y-1">
+                            <div class="text-3xl font-black font-mono text-black dark:text-white">4K Video</div>
+                            <p data-i18n="glasses-f1" class="text-xs sm:text-sm font-semibold text-apple-mutedLight dark:text-apple-mutedDark">Ultra-clear recording</p>
+                        </div>
+                        <div class="border-l-4 border-apple-blue pl-4 space-y-1">
+                            <div class="text-3xl font-black font-mono text-black dark:text-white">AI Voice</div>
+                            <p data-i18n="glasses-f2" class="text-xs sm:text-sm font-semibold text-apple-mutedLight dark:text-apple-mutedDark">Contextual assistant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apple-card p-12 rounded-3xl bg-apple-lightBg dark:bg-black border-2 border-apple-lightBorder dark:border-apple-darkBorder flex flex-col items-center justify-center text-center space-y-5">
+                    <div class="w-24 h-24 rounded-3xl bg-apple-blue/15 flex items-center justify-center text-4xl text-apple-blue font-black">
+                        <i class="fa-solid fa-glasses"></i>
+                    </div>
+                    <h3 data-i18n="glasses-card-title" class="text-3xl font-extrabold">AI-Powered Glasses</h3>
+                    <p data-i18n="glasses-card-desc" class="text-sm sm:text-base text-apple-mutedLight dark:text-apple-mutedDark max-w-sm font-medium">
+                        Record moments, ask AI questions hands-free, and receive smart hydration reminders directly from your iBottle.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="pillars" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <span data-i18n="pillars-tag" class="text-xs sm:text-sm font-extrabold text-apple-blue uppercase tracking-widest">Our Philosophy</span>
+            <h2 data-i18n="pillars-title" class="text-3xl sm:text-5xl font-extrabold">What SMOHAS Stands For</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="apple-card p-8 rounded-3xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-purple-500/15 text-purple-500 flex items-center justify-center text-xl font-black">
+                    O
+                </div>
+                <h3 data-i18n="pillar1-title" class="text-2xl font-extrabold">Originality</h3>
+                <p data-i18n="pillar1-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                    Pioneering new technology categories with inventive, un-repeated hardware and software design.
+                </p>
+            </div>
+
+            <div class="apple-card p-8 rounded-3xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-apple-blue/15 text-apple-blue flex items-center justify-center text-xl font-black">
+                    HA
+                </div>
+                <h3 data-i18n="pillar2-title" class="text-2xl font-extrabold">Human Advancement</h3>
+                <p data-i18n="pillar2-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                    Developing technologies that genuinely enhance human health, daily wellness, and connectivity.
+                </p>
+            </div>
+
+            <div class="apple-card p-8 rounded-3xl bg-white dark:bg-apple-darkCard border-2 border-apple-lightBorder dark:border-apple-darkBorder shadow-md space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-xl font-black">
+                    S
+                </div>
+                <h3 data-i18n="pillar3-title" class="text-2xl font-extrabold">Science</h3>
+                <p data-i18n="pillar3-desc" class="text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed font-medium">
+                    Rooting every hardware innovation in rigorous engineering, thermal physics, and nano-pore filtration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section id="specs" class="py-16 max-w-4xl mx-auto px-6 border-t-2 border-apple-lightBorder dark:border-apple-darkBorder">
+        <h2 data-i18n="specs-title" class="text-3xl font-extrabold text-center mb-10">Technical Specifications</h2>
+        <div class="space-y-4 divide-y-2 divide-apple-lightBorder dark:divide-apple-darkBorder text-sm sm:text-base">
+            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span data-i18n="spec-1-lbl" class="font-extrabold text-black dark:text-white">iBottle Capabilities</span>
+                <span data-i18n="spec-1-val" class="sm:col-span-2 text-apple-mutedLight dark:text-apple-mutedDark font-medium">Filtration, Water Freezing/Heating, LED Temp Screen, Phone App Sync</span>
+            </div>
+            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span data-i18n="spec-2-lbl" class="font-extrabold text-black dark:text-white">Connectivity</span>
+                <span data-i18n="spec-2-val" class="sm:col-span-2 text-apple-mutedLight dark:text-apple-mutedDark font-medium">Bluetooth Low Energy & Satellite Connectivity</span>
+            </div>
+            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span data-i18n="spec-3-lbl" class="font-extrabold text-black dark:text-white">SMOHAS AI Glasses</span>
+                <span data-i18n="spec-3-val" class="sm:col-span-2 text-apple-mutedLight dark:text-apple-mutedDark font-medium">AI Recording, 4K Video Camera & Spatial Microphones</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLAGSHIP PRODUCT: iBOTTLE SECTION -->
+    <section id="ibottle" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span data-i18n="ibottle-tag" class="text-xs font-semibold text-apple-blue uppercase tracking-widest">Smart Hydration System</span>
+            <h2 data-i18n="ibottle-title" class="text-3xl sm:text-5xl font-semibold tracking-tight">iBottle</h2>
+            <p data-i18n="ibottle-sub" class="text-apple-mutedLight dark:text-apple-mutedDark text-base sm:text-lg">
+                Built-in water filtration, active freezing & heating thermal engine, and smartphone app intake tracking.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <!-- Product Real Image Showcase -->
+            <div class="apple-card p-3 rounded-3xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-xl overflow-hidden">
+                <img src="Smart Water Bottle for Hydration Tracking _ WFH Wellness.jpeg" alt="iBottle with Phone App" class="w-full h-auto rounded-2xl object-cover" />
+            </div>
+
+            <!-- Features Breakdown List -->
+            <div class="space-y-6">
+                <!-- Feature 1 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-snowflake"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-thermal-title" class="text-lg font-semibold mb-1">Freezes & Heats Water</h3>
+                            <p data-i18n="feat-thermal-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                                Active thermoelectric thermal cooling instantly freezes water or heats it up to warm tea temperatures on demand.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-filter"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-filter-title" class="text-lg font-semibold mb-1">Integrated Water Filter</h3>
+                            <p data-i18n="feat-filter-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                                Built-in micro-porous filtration purifies water automatically as you sip, removing impurities and micro-particles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-apple-blue/10 text-apple-blue flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-app-title" class="text-lg font-semibold mb-1">Phone App Hydration Tracking</h3>
+                            <p data-i18n="feat-app-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                                Syncs seamlessly with your smartphone to record daily water intake, display battery level, and set personal hydration goals.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="apple-card p-6 rounded-2xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-satellite font-size"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="feat-sat-title" class="text-lg font-semibold mb-1">Satellite & Bluetooth Connectivity</h3>
+                            <p data-i18n="feat-sat-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                                Connects everywhere even off the grid, keeping your hydration statistics logged wherever you travel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="glasses" class="py-20 bg-white dark:bg-apple-darkCard border-y border-apple-lightBorder dark:border-apple-darkBorder">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span data-i18n="glasses-tag" class="text-xs font-semibold text-apple-blue uppercase tracking-widest">Wearable Technology</span>
+                    <h2 data-i18n="glasses-title" class="text-3xl sm:text-5xl font-semibold tracking-tight">
+                        SMOHAS Meta Glasses
+                    </h2>
+                    <p data-i18n="glasses-sub" class="text-apple-mutedLight dark:text-apple-mutedDark text-base sm:text-lg leading-relaxed">
+                        Sleek AI-powered recording glasses designed for hands-free video capture, real-time voice translation, and smart assistant interaction.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 pt-2">
+                        <div class="border-l-2 border-apple-blue px-4 space-y-1">
+                            <div class="text-2xl font-bold font-mono">4K Video</div>
+                            <p data-i18n="glasses-f1" class="text-xs text-apple-mutedLight dark:text-apple-mutedDark">Ultra-clear recording</p>
+                        </div>
+                        <div class="border-l-2 border-apple-blue px-4 space-y-1">
+                            <div class="text-2xl font-bold font-mono">AI Voice</div>
+                            <p data-i18n="glasses-f2" class="text-xs text-apple-mutedLight dark:text-apple-mutedDark">Contextual assistant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apple-card p-10 rounded-3xl bg-apple-lightBg dark:bg-black border border-apple-lightBorder dark:border-apple-darkBorder flex flex-col items-center justify-center text-center space-y-4">
+                    <div class="w-20 h-20 rounded-3xl bg-apple-blue/10 flex items-center justify-center text-3xl text-apple-blue">
+                        <i class="fa-solid fa-glasses"></i>
+                    </div>
+                    <h3 data-i18n="glasses-card-title" class="text-2xl font-semibold">AI-Powered Wearable</h3>
+                    <p data-i18n="glasses-card-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark max-w-sm">
+                        Record moments, ask questions hands-free, and receive smart hydration reminders directly from your iBottle.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND PILLARS breakdown (SMOHAS acronym) -->
+    <section id="pillars" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <span data-i18n="pillars-tag" class="text-xs font-semibold text-apple-blue uppercase tracking-widest">Our Philosophy</span>
+            <h2 data-i18n="pillars-title" class="text-3xl sm:text-4xl font-semibold">What SMOHAS Stands For</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="apple-card p-8 rounded-3xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-lg font-bold">
+                    O
+                </div>
+                <h3 data-i18n="pillar1-title" class="text-xl font-semibold">Originality</h3>
+                <p data-i18n="pillar1-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                    Pioneering new technology categories with inventive, un-repeated hardware and software design.
+                </p>
+            </div>
+
+            <div class="apple-card p-8 rounded-3xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-apple-blue/10 text-apple-blue flex items-center justify-center text-lg font-bold">
+                    HA
+                </div>
+                <h3 data-i18n="pillar2-title" class="text-xl font-semibold">Human Advancement</h3>
+                <p data-i18n="pillar2-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                    Developing technologies that genuinely enhance human health, daily wellness, and connectivity.
+                </p>
+            </div>
+
+            <div class="apple-card p-8 rounded-3xl bg-white dark:bg-apple-darkCard border border-apple-lightBorder dark:border-apple-darkBorder shadow-sm space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg font-bold">
+                    S
+                </div>
+                <h3 data-i18n="pillar3-title" class="text-xl font-semibold">Science</h3>
+                <p data-i18n="pillar3-desc" class="text-xs sm:text-sm text-apple-mutedLight dark:text-apple-mutedDark leading-relaxed">
+                    Rooting every hardware innovation in rigorous engineering, thermal physics, and nano-pore filtration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SPECIFICATIONS -->
+    <section id="specs" class="py-16 max-w-4xl mx-auto px-6 border-t border-apple-lightBorder dark:border-apple-darkBorder">
+        <h2 data-i18n="specs-title" class="text-2xl font-semibold text-center mb-10">Technical Specifications</h2>
+        <div class="space-y-4 divide-y divide-apple-lightBorder dark:divide-apple-darkBorder text-xs sm:text-sm">
+            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span data-i18n="spec-1-lbl" class="font-semibold">iBottle Capabilities</span>
+                <span data-i18n="spec-1-val" class="sm:col-span-2 text-apple-mutedLight dark:text-apple-mutedDark">Filtration, Water Freezing/Heating, Phone App Sync</span>
+            </div>
+            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span data-i18n="spec-2-lbl" class="font-semibold">Connectivity</span>
+                <span data-i18n="spec-2-val" class="sm:col-span-2 text-apple-mutedLight dark:text-apple-mutedDark">Bluetooth Low Energy & Satellite Connectivity</span>
+            </div>
+            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span data-i18n="spec-3-lbl" class="font-semibold">SMOHAS Meta Glasses</span>
+                <span data-i18n="spec-3-val" class="sm:col-span-2 text-apple-mutedLight dark:text-apple-mutedDark">AI Recording, 4K Video Camera & Spatial Microphones</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-apple-lightBorder dark:border-apple-darkBorder py-10 text-xs text-apple-mutedLight dark:text-apple-mutedDark">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4">
+                    <svg viewBox="0 0 100 115" class="w-full h-full fill-current text-black dark:text-white">
+                        <polygon points="50,10 88,32 88,48 65,35 50,26 35,35 20,43 20,58 35,66 50,75 65,66 65,52 80,60 80,74 50,91 20,74 8,81 50,105 92,81 92,48 78,40 78,32" />
+                    </svg>
+                </div>
+                <span data-i18n="footer-copyright">Copyright &copy; 2026 SMOHAS Inc. All rights reserved.</span>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" data-i18n="footer-privacy" class="hover:underline">Privacy Policy</a>
+                <a href="#" data-i18n="footer-terms" class="hover:underline">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations Dictionary
+        const translations = {
+            en: {
+                "nav-overview": "Overview",
+                "nav-ibottle": "iBottle",
+                "nav-glasses": "AI Glasses",
+                "nav-pillars": "Pillars",
+                "nav-specs": "Specs",
+                "hero-tag": "SMOHAS Innovations",
+                "hero-motto": "Shaping Tomorrow through Originality, Human Advancement & Science",
+                "hero-sub": "Empowering everyday life with iBottle smart hydration and SMOHAS AI Glasses wearable intelligence.",
+                "ibottle-tag": "Smart Hydration System",
+                "ibottle-title": "iBottle",
+                "ibottle-sub": "Built-in water filtration, active freezing & heating thermal engine, LED temperature display, and smartphone app intake tracking.",
+                "feat-thermal-title": "Freezes & Heats Water",
+                "feat-thermal-desc": "Active thermoelectric cooling instantly freezes water or heats it up with precision LED temperature readout on demand.",
+                "feat-filter-title": "Integrated Water Filter",
+                "feat-filter-desc": "Built-in micro-porous filtration purifies water automatically as you sip, removing impurities and micro-particles.",
+                "feat-app-title": "Phone App Hydration Tracking",
+                "feat-app-desc": "Syncs seamlessly with your smartphone to record daily water intake, display battery level, and set personal hydration goals.",
+                "feat-sat-title": "Satellite & Bluetooth Connectivity",
+                "feat-sat-desc": "Connects everywhere even off the grid, keeping your hydration statistics logged wherever you travel.",
+                "glasses-tag": "Wearable Intelligence",
+                "glasses-title": "SMOHAS AI Glasses",
+                "glasses-sub": "Sleek AI-powered recording glasses designed for hands-free video capture, real-time voice translation, and smart AI assistant interaction.",
+                "glasses-f1": "Ultra-clear recording",
+                "glasses-f2": "Contextual assistant",
+                "glasses-card-title": "AI-Powered Glasses",
+                "glasses-card-desc": "Record moments, ask AI questions hands-free, and receive smart hydration reminders directly from your iBottle.",
+                "pillars-tag": "Our Philosophy",
+                "pillars-title": "What SMOHAS Stands For",
+                "pillar1-title": "Originality",
+                "pillar1-desc": "Pioneering new technology categories with inventive, un-repeated hardware and software design.",
+                "pillar2-title": "Human Advancement",
+                "pillar2-desc": "Developing technologies that genuinely enhance human health, daily wellness, and connectivity.",
+                "pillar3-title": "Science",
+                "pillar3-desc": "Rooting every hardware innovation in rigorous engineering, thermal physics, and nano-pore filtration.",
+                "specs-title": "Technical Specifications",
+                "spec-1-lbl": "iBottle Capabilities",
+                "spec-1-val": "Filtration, Water Freezing/Heating, LED Temp Screen, Phone App Sync",
+                "spec-2-lbl": "Connectivity",
+                "spec-2-val": "Bluetooth Low Energy & Satellite Connectivity",
+                "spec-3-lbl": "SMOHAS AI Glasses",
+                "spec-3-val": "AI Recording, 4K Video Camera & Spatial Microphones",
+                "footer-copyright": "Copyright © 2026 SMOHAS Inc. All rights reserved.",
+                "footer-privacy": "Privacy Policy",
+                "footer-terms": "Terms of Use"
+            },
+            ar: {
+                "nav-overview": "نظرة عامة",
+                "nav-ibottle": "آي بوتل",
+                "nav-glasses": "نظارات الذكاء الاصطناعي",
+                "nav-pillars": "المبادئ",
+                "nav-specs": "المواصفات",
+                "hero-tag": "ابتكارات سموهاس",
+                "hero-motto": "تشكيل الغد من خلال الأصالة والتقدم البشري والعلم",
+                "hero-sub": "تمكين الحياة اليومية بقارورة iBottle الذكية ونظارات SMOHAS AI الذكية.",
+                "ibottle-tag": "نظام الترطيب الذكي",
+                "ibottle-title": "iBottle",
+                "ibottle-sub": "فلترة مدمجة للماء، محرك حراري لتجميد وتسخين الماء، شاشة LED للحرارة، وتطبيق هاتف لحساب الشرب.",
+                "feat-thermal-title": "تجميد وتسخين الماء",
+                "feat-thermal-desc": "تبريد وتدفئة حرارية نشطة لتجميد الماء أو تسخينه فورياً مع عرض درجة الحرارة بدقة.",
+                "feat-filter-title": "فلتر ماء مدمج",
+                "feat-filter-desc": "نظام فلترة دقيق ينقي الماء تلقائياً أثناء الشرب من الشوائب والميكروبات.",
+                "feat-app-title": "تتبع الشرب عبر تطبيق الهاتف",
+                "feat-app-desc": "يتزامن بسلاسة مع هاتفك الذكي لتسجيل كمية الماء اليومية وعرض نسبة البطارية.",
+                "feat-sat-title": "اتصال عبر الأقمار الصناعية والبلوتوث",
+                "feat-sat-desc": "يتصل بالشبكة في أي مكان حتى في المناطق النائية لتسجيل بيانات الترطيب الخاصة بك.",
+                "glasses-tag": "تقنية ذكية قابلة للارتداء",
+                "glasses-title": "نظارات SMOHAS AI Glasses",
+                "glasses-sub": "نظارات تسجيل ذكية مدعومة بالذكاء الاصطناعي لالتقاط الفيديو بدون يدين والتفاعل الصوتي المباشر.",
+                "glasses-f1": "تصوير عالي الدقة",
+                "glasses-f2": "مساعد ذكي تفاعلي",
+                "glasses-card-title": "نظارات الذكاء الاصطناعي",
+                "glasses-card-desc": "سجّل اللحظات واطرح الأسئلة بدون استخدام اليدين واستقبل تنبيهات شرب الماء.",
+                "pillars-tag": "فلسفتنا",
+                "pillars-title": "ماذا تعني كلمة SMOHAS",
+                "pillar1-title": "الأصالة (Originality)",
+                "pillar1-desc": "ابتكار فئات تقنية جديدة بتصاميم مميزة وغير مكررة.",
+                "pillar2-title": "التقدم البشري (Human Advancement)",
+                "pillar2-desc": "تطوير تقنيات تعزز صحة الإنسان وجودة الحياة اليومية.",
+                "pillar3-title": "العلم ",
+                "pillar3-desc": "ترسيخ كل ابتكار في هندسة دقيقة وفيزياء حرارية وفلترة نانو متطورة.",
+                "specs-title": "المواصفات التقنية",
+                "spec-1-lbl": "قدرات iBottle",
+                "spec-1-val": "فلترة، تجميد وتسخين الماء، شاشة LED، مزامنة مع تطبيق الهاتف",
+                "spec-2-lbl": "الاتصال",
+                "spec-2-val": "بلوتوث منخفض الطاقة واتصال عبر الأقمار الصناعية",
+                "spec-3-lbl": "نظارات SMOHAS AI Glasses",
+                "spec-3-val": "تسجيل بالذكاء الاصطناعي، كاميرا 4K وميكروفونات متعددة",
+                "footer-copyright": "حقوق الطبع والنشر © 2026 لشركة SMOHAS Inc. جميع الحقوق محفوظة.",
+                "footer-privacy": "سياسة الخصوصية",
+                "footer-terms": "شروط الاستخدام"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('lang-toggle').textContent = currentLang === 'en' ? 'العربية' : 'English';
+
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    elem.textContent = translations[currentLang][key];
+                }
+            });
+        }
+
+        // Dark / Light Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const navbar = document.getElementById('navbar');
+        const heroHeading = document.getElementById('hero-heading');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            navbar.className = isDark 
+                ? 'fixed top-0 left-0 w-full z-50 apple-nav-dark transition-all duration-300' 
+                : 'fixed top-0 left-0 w-full z-50 apple-nav-light transition-all duration-300';
+            heroHeading.className = isDark ? 'text-gradient-dark' : 'text-gradient-light';
+        });
+    </script>
+</body>
